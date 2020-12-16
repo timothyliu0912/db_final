@@ -5,7 +5,7 @@
 #define EDGE_TABLE_LENGTH 200000
 
 typedef struct graph_edge graph_edge;
-typedef struct word_ferq_sound word_ferq_sound;
+typedef struct word_freq_sound word_freq_sound;
 typedef struct graph_node graph_node;
 typedef struct graph_node graph_node;
 typedef struct graph_edge_list graph_edge_list;
@@ -14,7 +14,6 @@ typedef struct graph_node_list graph_node_list;
 typedef struct node_table node_table;
 typedef struct edge_table edge_table;
 typedef struct graph graph;
-
 
 struct graph_edge
 {
@@ -29,20 +28,18 @@ struct graph_edge_list
     struct graph_edge_list *next;
 };
 
-
-struct word_ferq_sound
+struct word_freq_sound
 {
     int freq;
     char sound[SOUND_LENGTH];
-    struct word_ferq_sound *next;
+    struct word_freq_sound *next;
 };
-
 
 struct graph_node
 {
     char id[ID_LENGTH];
     char word[WORD_LENGTH];
-    word_ferq_sound *word_fs;
+    word_freq_sound *word_fs;
     graph_edge graph_edge_list;
 };
 
@@ -67,4 +64,7 @@ struct graph
     edge_table edge_hash_tb;
     node_table node_hash_tb;
     int word_cnt;
+    int total_cnt;
 };
+
+int sent_insert(graph *db,char *sent);
