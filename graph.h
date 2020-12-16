@@ -1,3 +1,4 @@
+#include "md5.h"
 #define ID_LENGTH 100
 #define SOUND_LENGTH 100
 #define WORD_LENGTH 1024
@@ -67,4 +68,4 @@ struct graph
     int total_cnt;
 };
 
-int sent_insert(graph *db,char *sent);
+int sent_insert(graph *db,char *sent,MD5_CTX *context);
