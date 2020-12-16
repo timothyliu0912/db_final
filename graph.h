@@ -15,12 +15,11 @@ typedef struct node_table node_table;
 typedef struct edge_table edge_table;
 typedef struct graph graph;
 
-
 struct graph_edge
 {
     char id[ID_LENGTH];
     int pmi;
-    graph_node *output;
+    graph_node *next_node;
 };
 
 struct graph_edge_list
@@ -29,14 +28,12 @@ struct graph_edge_list
     struct graph_edge_list *next;
 };
 
-
 struct word_ferq_sound
 {
     int freq;
     char sound[SOUND_LENGTH];
     struct word_ferq_sound *next;
 };
-
 
 struct graph_node
 {
