@@ -1,3 +1,4 @@
+#include "md5.h"
 #define ID_LENGTH 100
 #define SOUND_LENGTH 100
 #define WORD_LENGTH 1024
@@ -5,7 +6,7 @@
 #define EDGE_TABLE_LENGTH 200000
 
 typedef struct graph_edge graph_edge;
-typedef struct word_ferq_sound word_ferq_sound;
+typedef struct word_freq_sound word_freq_sound;
 typedef struct graph_node graph_node;
 typedef struct graph_node graph_node;
 typedef struct graph_edge_list graph_edge_list;
@@ -32,14 +33,14 @@ struct word_ferq_sound
 {
     int freq;
     char sound[SOUND_LENGTH];
-    struct word_ferq_sound *next;
+    struct word_freq_sound *next;
 };
 
 struct graph_node
 {
     char id[ID_LENGTH];
     char word[WORD_LENGTH];
-    word_ferq_sound *word_fs;
+    word_freq_sound *word_fs;
     graph_edge graph_edge_list;
 };
 
@@ -64,4 +65,7 @@ struct graph
     edge_table edge_hash_tb;
     node_table node_hash_tb;
     int word_cnt;
+    int total_cnt;
 };
+
+int sent_insert(graph *db,char *sent,MD5_CTX *context);
