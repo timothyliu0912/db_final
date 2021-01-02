@@ -64,17 +64,17 @@ struct graph
 {
     edge_table edge_hash_tb;
     node_table node_hash_tb;
-    int word_cnt; // numbers of nodes (unique)
+    int word_cnt;  // numbers of nodes (unique)
     int total_cnt; // total appear
 };
 
-// FIXME: not sure 
-int sent_insert(graph *db,char *sent,MD5_CTX *context); // insert node by sentence
+// FIXME: not sure
+int sent_insert(graph *db, char *sent, MD5_CTX *context); // insert node by sentence
 
 // TODO: not complete
-int query(graph *db, char *pattern); // query a word info
-int sent_update(graph *db, char *sent); // update by sentence
-int word_update(graph *db, char *word, int freq, char* sound, ); // update by word
+int query(graph *db, char *pattern);                           // query a word info
+int sent_update(graph *db, char *sent);                        // update by sentence
+int word_update(graph *db, char *word, int freq, char *sound); // update by word, freq = -1 -> do not change, sound = NULL -> do not change
 
-int node_delete(graph *db, char* pattern); // delete a node by a word
-int traversal(graph* db); // traversal every words
+int node_delete(graph *db, char *pattern); // delete a node by a word
+int traversal(graph *db);                  // traversal every words
