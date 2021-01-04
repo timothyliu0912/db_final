@@ -10,11 +10,14 @@ int update_term_property(graph *db, char *term, char *sound, int freq)
     sound: this word sound, if null: ignore
     freq: this word freq, if -1: ignore
     */
+
     graph_node *node = &find_term_node(db, term)->node;
     if (sound != NULL)
         strcpy(node->word_fs->sound, sound);
-    if (freq != -1)
+    if (freq != -1) {
+        db->total_cnt += freq - node->word_fs->freq;
         node->word_fs->freq = freq;
+    }
     return 0; // succesful
 }
 
