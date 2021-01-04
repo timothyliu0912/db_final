@@ -5,10 +5,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-void print_word(graph *db, const char *word);
+void print_node(graph *db,  char *word);
+void print_edge(graph *db,  char *word1,  char *word2);
 void test_update(graph *db);
 void test_insert(graph *db);
-
 int main(int argc, char *argv[])
 {
     graph db;
@@ -24,8 +24,12 @@ void test_update(graph *db)
 {
     update_term_property(db, "台南", "w123\00cp31\0", 333);
     graph_node_list *target = find_term_node(db, "台南\0");
-    print_word(&db, "台南");
-        
+    print_node(db, "台南");
+    
+    update_edge_property(db, "台南", "很好", 10000);
+    print_edge(db, "台南", "很好");
+    print_edge(db, "台南", "很棒");
+
 }
 
 void test_insert(graph *db)
@@ -34,12 +38,12 @@ void test_insert(graph *db)
     cnt = sent_insert(db, "台南\0很好\0\0", "w96j0_\0cp3cl3\0\0");
     db->word_cnt += cnt;
     db->total_cnt += cnt;
-    print_word(&db, "台南");
+    print_node(db, "台南");
 }
 
-void print_word(graph *db, const char *word)
+void print_node(graph *db,  char *word)
 {
-    graph_node_list *target = find_term_node(db, "很棒啦\0");
+    graph_node_list *target = find_term_node(db, word);
     if (target != NULL)
     {
         printf("%s\n", target->node.word_fs->sound);
@@ -49,4 +53,10 @@ void print_word(graph *db, const char *word)
     {
         printf("not found!!\n");
     }
+}
+
+void print_edge(graph* db,  char* word1,  char* word2)
+{
+    graph_edge_list* t = find_edge_in_table(db, word1, word2);
+    printf("%s\t%s: %d\n", word1, word2, t->freq);
 }
