@@ -1,15 +1,16 @@
 #include "update.h"
 
-int update_term_property(graph* db, char *term, char* sound, int freq);
+// TODO: 
+int update_term_property(graph* db, char *term, char* sound, int freq)
 {
     /*
     term: select term
     sound: this word sound, if null: ignore
     freq: this word freq, if -1: ignore
     */
-    graph_node*  node = & find_term_node(db, term) -> node;
+    graph_node*  node = &find_term_node(db, term) -> node->word_fs;
     if (sound != NULL)
-        strcpy(node.sound, sound);
+        strcpy(node->sound, sound);
     if(freq != -1)
         node->freq = freq;
     return 0; // succesful
