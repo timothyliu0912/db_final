@@ -64,3 +64,4 @@ struct graph
 void md5(char *word,char *hash_code);
 unsigned long long hash33(unsigned char *key);
 int sent_insert(graph *db,char *sent,char *sound);
+graph create_graph();

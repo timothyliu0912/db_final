@@ -9,12 +9,10 @@ void print_node(graph *db,  char *word);
 void print_edge(graph *db,  char *word1,  char *word2);
 void test_update(graph *db);
 void test_insert(graph *db);
+
 int main(int argc, char *argv[])
 {
-    graph db;
-
-    db.word_cnt = 0; //initialize
-    db.total_cnt = 0;
+    graph db = create_graph();
     test_insert(&db);
     test_update(&db);
     return 0;
