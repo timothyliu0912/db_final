@@ -2,20 +2,25 @@
 #include <stdlib.h>
 #include <string.h>
 #include "graph.h"
-// #include "md5.h"
+#include "query.h"
+
 
 int main(int argc,char *argv[]){
-    puts("1235");
-    MD5_CTX md5;  
-    MD5Init(&md5); 
     graph db;
-    puts("1235");
 
     db.word_cnt = 0; //initialize
     db.total_cnt = 0;
-    int cnt = sent_insert(&db,"apple banana",&md5);
-    puts("1235");
-
-    printf("%d\n",cnt);
+    int cnt = sent_insert(&db,"台南\0很棒\0\0","w96j0_\0cp31;4\0\0");
+    cnt = sent_insert(&db,"台南\0很好\0\0","w96j0_\0cp3cl3\0\0");
+    db.word_cnt += cnt;
+    db.total_cnt += cnt;
+    graph_node_list* target = find_term_node(&db,"很棒啦\0");
+    if(target!=NULL){
+        printf("%s\n",target->node.word_fs->sound);
+        printf("%d\n",target->node.word_fs->freq);
+    }
+    else{
+        printf("not found!!\n");
+    }
     return 0;
 }

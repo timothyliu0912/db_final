@@ -1,2 +1,2 @@
 db:
-	gcc *.c
+	gcc *.c -lcrypto
