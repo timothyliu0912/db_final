@@ -1,5 +1,5 @@
-#include "query.h"
 #include "graph.h"
+#include "query.h"
 #include <stdio.h>
 #include <string.h>
 
