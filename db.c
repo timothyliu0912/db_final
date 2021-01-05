@@ -2,6 +2,7 @@
 #include "query.h"
 #include "update.h"
 #include "predict.h"
+#include "save.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,6 +12,7 @@ void print_edge(graph *db,  char *word1,  char *word2);
 void test_update(graph *db);
 void test_insert(graph *db);
 void test_predict(graph* db);
+void test_save(graph* db);
 
 
 int main(int argc, char *argv[])
@@ -18,8 +20,14 @@ int main(int argc, char *argv[])
     graph db = create_graph();
     test_insert(&db);
     test_update(&db);
-    test_predict(&db);
+    // test_predict(&db);
+    test_save(&db);
     return 0;
+}
+
+void test_save(graph *db)
+{
+    db_save(db, "test");
 }
 
 void test_update(graph *db)
@@ -31,13 +39,11 @@ void test_update(graph *db)
     update_edge_property(db, "台南", "很好", 10000);
     print_edge(db, "台南", "很好");
     print_edge(db, "台南", "很棒");
-
-
 }
 
 void test_insert(graph *db)
 {
-    int cnt = sent_insert(db, "台南\0很棒\0個屁\0\0", "w96j0_\0cp31;4\0\0");
+    int cnt = sent_insert(db, "台南\0很棒\0個屁\0\0", "w96j0_\0cp31;4\0ek7qu4\0\0");
     cnt = sent_insert(db, "台南\0很好\0\0", "w96j0_\0cp3cl3\0\0");
     db->word_cnt += cnt;
     db->total_cnt += cnt;
