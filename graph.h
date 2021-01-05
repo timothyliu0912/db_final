@@ -9,11 +9,9 @@
 typedef struct graph_edge graph_edge;
 typedef struct word_freq_sound word_freq_sound;
 typedef struct graph_node graph_node;
-typedef struct graph_node graph_node;
 typedef struct graph_edge_list graph_edge_list;
 typedef struct graph graph;
 typedef struct graph_node_list graph_node_list;
-typedef struct graph graph;
 typedef struct graph_edge_id graph_edge_id;
 
 struct graph_edge_id
