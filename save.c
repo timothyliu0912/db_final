@@ -58,5 +58,5 @@ int db_save(graph *db, char *filename)
             write(fd, "\n", 1);
         }
     }
-    close(fd);
+    return close(fd);
 }
