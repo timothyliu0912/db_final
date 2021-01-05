@@ -1,16 +1,14 @@
-#include "load.h"
 #include "graph.h"
-#include <fcntl.h>
+#include "load.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-graph db_load(char *path)
+int db_load(graph *db, char *path)
 {
+
     FILE *fp = fopen(path, "r");
     LOAD_STATUS status = WORD;
-    graph db = create_graph();
-
 
     char line[2048];
 
@@ -18,23 +16,19 @@ graph db_load(char *path)
     {
         line[strlen(line) - 1] = 0;
         if (!strcmp(line, "word"))
-        {
             status = WORD;
-        }
         else if (!strcmp(line, "relation"))
-        {
             status = RELATION;
-        }
         else if (status == WORD)
         {
-            add_word(&db, line);
+            add_word(db, line);
         }
         else if (status == RELATION)
         {
-            add_relation(&db, line);
+            // !TODO: add_relation(hash and graph)
+            // add_relation(db, line);
         }
     }
-    return db;
 }
 
 int add_word(graph *db, char *line)
@@ -56,7 +50,7 @@ int add_word(graph *db, char *line)
     while (p != NULL)
     {
         char *tmp = strdup(p);
-        char *spl = strchr(tmp, ",");
+        char *spl = strchr(tmp, ',');
         *spl = 0;
         end_data->freq = atoi(spl);
         strcpy(end_data->sound, spl + strlen(spl) + 1);
@@ -78,9 +72,19 @@ int add_word(graph *db, char *line)
 
     // put into hash
     unsigned long long hash_key = hash33(node.id);
-    graph_node_list* now = db->node_table[hash_key % NODE_TABLE_LENGTH];
-    while(now->next != NULL) {
-        now = now->next;
+    if (db->node_table[hash_key % NODE_TABLE_LENGTH] == NULL)
+    {
+        db->node_table[hash_key % NODE_TABLE_LENGTH] = gnl;
     }
-    now->next = gnl;
+    else
+    {
+        // ! no test this branch
+        graph_node_list *now = db->node_table[hash_key % NODE_TABLE_LENGTH];
+        while (now->next != NULL)
+        {
+            now = now->next;
+        }
+        now->next = gnl;
+    }
+    puts(db->node_table[hash_key % NODE_TABLE_LENGTH]->node.id);
 }

@@ -2,6 +2,7 @@
 #include "query.h"
 #include "update.h"
 #include "predict.h"
+#include "load.h"
 #include "save.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +14,6 @@ void test_update(graph *db);
 void test_insert(graph *db);
 void test_predict(graph* db);
 void test_save(graph* db);
-
 
 int main(int argc, char *argv[])
 {
