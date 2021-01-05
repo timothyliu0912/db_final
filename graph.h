@@ -48,7 +48,7 @@ struct graph_node
 struct graph_node_list
 {
     graph_node node;
-    graph_node_list *next;
+    graph_node_list *next; // for hash
 };
 
 struct graph
