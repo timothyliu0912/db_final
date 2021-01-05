@@ -1,4 +1,6 @@
 #include "graph.h"
+#include "save.h"
+
 #include <fcntl.h>
 #include <stdio.h>
 #include <string.h>
