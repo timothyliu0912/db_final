@@ -27,7 +27,6 @@ int db_load(graph *db, char *path)
         }
         else if (status == RELATION)
         {
-            // !TODO: add_relation(hash and graph)
             add_relation(db, line);
         }
     }
