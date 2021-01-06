@@ -24,9 +24,9 @@ struct graph_edge_list
 {
     char id[ID_LENGTH];
     int freq;
-    graph_node_list *point_to;
-    graph_node_list *point_from;
-    struct graph_edge_list *next;
+    graph_node_list *point_to;    // for graph
+    graph_node_list *point_from;  // for graph
+    struct graph_edge_list *next; // for hash
 };
 
 struct word_freq_sound
@@ -59,7 +59,7 @@ struct graph
     int total_cnt;
 };
 
-void md5(char *word,char *hash_code);
+void md5(char *word, char *hash_code);
 unsigned long long hash33(unsigned char *key);
-int sent_insert(graph *db,char *sent,char *sound);
+int sent_insert(graph *db, char *sent, char *sound);
 graph create_graph();

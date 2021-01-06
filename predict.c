@@ -42,7 +42,8 @@ predicted_word_list predict_next_word(graph *db, char *sent)
     {
         graph_edge_list *edge = find_edge_in_table_by_id(db, now_edge_id->id);
         graph_node b_node = edge->point_to->node;
-        double pmi = cal_pmi(a_node.word_fs->freq, b_node.word_fs->freq, edge->freq, db->total_cnt);
+        double pmi = cal_pmi(a_node.word_fs->freq, b_node.word_fs->freq,
+                             edge->freq, db->total_cnt);
         cands.candidates[cand_idx++] = create_predicted_word(b_node.word, pmi);
         // pick the word's next edge
         now_edge_id = now_edge_id->next;
