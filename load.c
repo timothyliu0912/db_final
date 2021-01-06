@@ -101,6 +101,8 @@ int add_word(graph *db, char *line)
     // create graph node, graph node list, save by hash table
     char *p = strtok(line, " ");
 
+    db->word_cnt ++;
+
     graph_node node;
 
     strcpy(node.id, p);
@@ -111,14 +113,15 @@ int add_word(graph *db, char *line)
     // read sound freq
     word_freq_sound *data = (word_freq_sound *)malloc(sizeof(word_freq_sound));
     word_freq_sound *end_data = data;
+
     end_data->next = NULL;
     while (p != NULL)
     {
         char *tmp = strdup(p);
         char *spl = strchr(tmp, ',');
         *spl = 0;
-        end_data->freq = atoi(spl);
-        strcpy(end_data->sound, spl + strlen(spl) + 1);
+        end_data->freq = atoi(tmp);
+        strcpy(end_data->sound, spl + 1);
         p = strtok(NULL, " ");
         free(tmp);
         if (p != NULL)

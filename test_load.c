@@ -19,15 +19,15 @@ int main()
 {
     graph db = create_graph();
     db_load(&db, "test");
-    test_insert(&db);
-    test_update(&db);
-    // test_save(&db);
+    // test_insert(&db);
+    // test_update(&db);
+    test_save(&db);
 }
 
 
 void test_save(graph *db)
 {
-    db_save(db, "test");
+    db_save(db, "test1");
 }
 
 void test_update(graph *db)
