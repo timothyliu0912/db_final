@@ -8,6 +8,11 @@ graph create_graph()
 	graph db;
 	db.word_cnt = 0; //initialize
 	db.total_cnt = 0;
+
+	for(int i=0; i< EDGE_TABLE_LENGTH; ++i)
+		db.edge_table[i] = NULL;
+	for(int i=0; i< NODE_TABLE_LENGTH; ++i)
+		db.node_table[i] = NULL;
 	return db;
 }
 
