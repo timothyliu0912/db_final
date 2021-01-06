@@ -17,6 +17,13 @@
 * prev_node: Node*
 * next_node: Node*
 * weight: float, (PMI)
+
+### Edge
+
+* _id: int binary (md5(prev_node->word) + md5(next_node->word))
+* prev_node: Node*
+* next_node: Node*
+* weight: float, (PMI)
 <!-- * factor -->
 
 ## Function
